@@ -4,20 +4,24 @@
 
 Este documento registra de forma transparente como ferramentas de Inteligência Artificial foram utilizadas durante o desenvolvimento do desafio Marvel Quality Engineering.
 
-A IA foi utilizada como ferramenta de apoio para:
+A IA foi utilizada de forma intensiva como copiloto durante o desenvolvimento, inclusive para:
 
 - brainstorming técnico;
 - estruturação inicial da estratégia;
-- revisão de cenários;
-- sugestões de organização do repositório;
-- apoio na elaboração de comandos e configurações;
-- revisão de documentação;
+- geração e revisão de código de automação e scripts de apoio;
+- elaboração e revisão de cenários de teste;
+- organização do repositório;
+- elaboração de comandos e configurações;
+- apoio na construção do pipeline CI/CD;
+- produção e revisão de documentação;
 - análise de possíveis riscos;
 - troubleshooting durante a evolução da automação.
 
-Nenhum resultado de teste foi considerado válido apenas porque foi sugerido ou produzido com auxílio de IA.
+O uso de IA foi deliberadamente incorporado ao processo como ferramenta de aceleração da engenharia.
 
-As decisões e entregas foram submetidas a validação por execução real, inspeção dos resultados e ajustes manuais.
+Entretanto, nenhum resultado de teste foi considerado válido apenas porque foi sugerido ou produzido com auxílio de IA.
+
+O código e as configurações executáveis incorporados ao projeto foram validados por execução real, inspeção de resultados e análise de logs. Documentação, estratégia e decisões técnicas foram revisadas e ajustadas conforme as evidências obtidas durante o desenvolvimento.
 
 ---
 
@@ -211,9 +215,11 @@ Esses ajustes foram decisões técnicas tomadas a partir de evidências obtidas 
 
 ## Decisões de engenharia
 
-A IA forneceu possibilidades, mas não determinou automaticamente a arquitetura final.
+A IA participou ativamente da elaboração e revisão de alternativas técnicas, mas suas sugestões não foram adotadas automaticamente.
 
-Entre as decisões técnicas mantidas sob responsabilidade da autora do projeto estão:
+A decisão de manter, adaptar ou descartar cada proposta foi tomada após análise do contexto e, quando aplicável, validação por execução.
+
+Entre as decisões técnicas consolidadas no projeto estão:
 
 - adoção de Robot Framework e Python para a camada principal de API;
 - uso complementar de Postman/Newman sem duplicar toda a cobertura;
