@@ -1,0 +1,35 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Robot Framework
+api-tests/results/
+output.xml
+log.html
+report.html
+
+# Node
+node_modules/
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
