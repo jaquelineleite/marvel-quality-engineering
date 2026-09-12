@@ -56,13 +56,13 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| AUTH-01 | Realizar requisição autenticada com token válido | API | P0 | Sim | Confirma acesso básico à API e configuração correta da autenticação | Funcional / Positivo | RISK-03 | Planejado | - |
+| AUTH-01 | Realizar requisição autenticada com token válido | API | P0 | Sim | Confirma acesso básico à API e configuração correta da autenticação | Funcional / Positivo | RISK-03 | Concluído | api-tests/tests/authentication.robot |
 
-| AUTH-02 | Realizar requisição sem token | API | P0 | Sim | Valida proteção do recurso contra acesso não autenticado | Segurança / Negativo | RISK-03 | Planejado | - |
+| AUTH-02 | Realizar requisição sem token | API | P0 | Sim | Valida proteção do recurso contra acesso não autenticado | Segurança / Negativo | RISK-03 | Concluído | api-tests/tests/authentication.robot |
 
-| AUTH-03 | Realizar requisição com token inválido | API | P1 | Sim | Garante tratamento consistente de credencial inválida | Segurança / Negativo | RISK-03 | Planejado | - |
+| AUTH-03 | Realizar requisição com token inválido | API | P1 | Sim | Garante tratamento consistente de credencial inválida | Segurança / Negativo | RISK-03 | Concluído | api-tests/tests/authentication.robot |
 
-| AUTH-04 | Validar que token não aparece em código ou logs | Segurança | P0 | Sim | Evita exposição de segredo no repositório e pipeline | Segurança | RISK-04 | Em andamento | git check-ignore / secret scan |
+| AUTH-04 | Validar que token não aparece em código ou logs | Segurança | P0 | Sim | Evita exposição de segredo no repositório e pipeline | Segurança | RISK-04 | Validado localmente | .env ignorado + secret scan com git grep |
 
 | AUTH-05 | Validar token expirado ou revogado | API | P2 | Parcial | Depende da possibilidade segura de revogação/expiração durante o desafio | Segurança / Negativo | RISK-03 | A validar | - |
 
@@ -80,21 +80,21 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| API-01 | Consultar identidade do usuário autenticado | API | P0 | Sim | Query simples e estável para confirmar acesso funcional à API | Funcional / Positivo | RISK-02 | Planejado | - |
+| API-01 | Consultar identidade do usuário autenticado | API | P0 | Sim | Query simples e estável para confirmar acesso funcional à API | Funcional / Positivo | RISK-02 | Concluído | authentication.robot / AUTH-01 |
 
-| API-02 | Validar estrutura da resposta da identidade do usuário | API / Contrato | P0 | Sim | Detecta alteração estrutural ou ausência de campos essenciais | Contrato | RISK-05 | Planejado | - |
+| API-02 | Validar estrutura da resposta da identidade do usuário | API / Contrato | P0 | Sim | Detecta alteração estrutural ou ausência de campos essenciais | Contrato | RISK-05 | Concluído | authentication.robot / AUTH-01 |
 
-| API-03 | Consultar projetos acessíveis pelo usuário | API | P1 | Sim | Exercita recurso real documentado e retorno de coleção | Funcional / Positivo | RISK-07 | Planejado | - |
+| API-03 | Consultar projetos acessíveis pelo usuário | API | P1 | Sim | Exercita recurso real documentado e retorno de coleção | Funcional / Positivo | RISK-07 | Concluído | api_queries.robot / API-01 |
 
-| API-04 | Validar estrutura da resposta de projetos | API / Contrato | P1 | Sim | Protege contra mudanças estruturais relevantes | Contrato | RISK-05 | Planejado | - |
+| API-04 | Validar estrutura da resposta de projetos | API / Contrato | P1 | Sim | Protege contra mudanças estruturais relevantes | Contrato | RISK-05 | Concluído | api_queries.robot / API-02 |
 
-| API-05 | Validar quantidade de registros retornados sem assumir valor fixo | API | P1 | Sim | Evita teste frágil sobre dados dinâmicos e valida consistência da coleção | Funcional | RISK-07 | Planejado | - |
+| API-05 | Validar quantidade de registros retornados sem assumir valor fixo | API | P1 | Sim | Evita teste frágil sobre dados dinâmicos e valida consistência da coleção | Funcional | RISK-07 | Concluído | api_queries.robot / API-02 e API-03 |
 
-| API-06 | Validar paginação da consulta de projetos | API | P1 | Sim | Paginação incorreta pode provocar perda ou duplicidade de dados | Integração | RISK-08 | Planejado | - |
+| API-06 | Validar paginação da consulta de projetos | API | P1 | Sim | Paginação incorreta pode provocar perda ou duplicidade de dados | Integração | RISK-08 | Concluído | api_queries.robot / API-03 |
 
-| API-07 | Validar informações de pageInfo e cursor | API / Contrato | P1 | Sim | Confirma integridade dos metadados utilizados na paginação | Contrato | RISK-08 | Planejado | - |
+| API-07 | Validar informações de pageInfo e cursor | API / Contrato | P1 | Sim | Confirma integridade dos metadados utilizados na paginação | Contrato | RISK-08 | Concluído | api_queries.robot / API-03 |
 
-| API-08 | Avaliar tempo de resposta de query prioritária | API / Performance | P2 | Sim | Identifica degradação básica sem gerar carga agressiva | Performance | RISK-09 | Planejado | - |
+| API-08 | Avaliar tempo de resposta de query prioritária | API / Performance | P2 | Sim | Identifica degradação básica sem gerar carga agressiva | Performance | RISK-09 | Concluído | performance/k6/smoke.js |
 
 
 
@@ -110,17 +110,17 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| NEG-01 | Executar query GraphQL sintaticamente inválida | API | P1 | Sim | Valida tratamento de erro de requisição inválida | Negativo | RISK-06 | Planejado | - |
+| NEG-01 | Executar query GraphQL sintaticamente inválida | API | P1 | Sim | Valida tratamento de erro de requisição inválida | Negativo | RISK-06 | Concluído | api_negative.robot |
 
-| NEG-02 | Solicitar campo inexistente no schema | API | P1 | Sim | Garante retorno adequado de erro de validação GraphQL | Negativo / Contrato | RISK-06 | Planejado | - |
+| NEG-02 | Solicitar campo inexistente no schema | API | P1 | Sim | Garante retorno adequado de erro de validação GraphQL | Negativo / Contrato | RISK-06 | Concluído | api_negative.robot |
 
-| NEG-03 | Enviar variável com tipo incompatível | API | P1 | Sim | Valida tratamento de tipo inválido | Negativo | RISK-06 | Planejado | - |
+| NEG-03 | Enviar variável com tipo incompatível | API | P1 | Sim | Valida tratamento de tipo inválido | Negativo | RISK-06 | Concluído | api_negative.robot |
 
 | NEG-04 | Enviar valor vazio em campo obrigatório quando aplicável | API | P2 | Sim | Exercita validação de entrada da API | Negativo | RISK-06 | A validar | - |
 
 | NEG-05 | Consultar recurso inexistente quando suportado | API | P2 | Sim | Valida resposta para identificador sem correspondência | Negativo | RISK-07 | A validar | - |
 
-| NEG-06 | Validar estrutura do objeto errors | API / Contrato | P1 | Sim | Assegura que falhas retornem informação estruturada para diagnóstico | Contrato / Negativo | RISK-06 | Planejado | - |
+| NEG-06 | Validar estrutura do objeto errors | API / Contrato | P1 | Sim | Assegura que falhas retornem informação estruturada para diagnóstico | Contrato / Negativo | RISK-06 | Concluído | api_negative.robot |
 
 
 
@@ -136,15 +136,15 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| UI-01 | Validar carregamento da página Marvel Rivals Heroes | UI | P0 | Sim | É o ponto de entrada da experiência avaliada | Smoke | RISK-11 | Planejado | - |
+| UI-01 | Validar carregamento da página Marvel Rivals Heroes | UI | P0 | Sim | É o ponto de entrada da experiência avaliada | Smoke | RISK-11 | Concluído | ui-tests/tests/smoke/heroes.spec.ts |
 
-| UI-02 | Validar exibição da lista/cards de heróis | UI | P0 | Sim | Conteúdo principal deve estar disponível | Smoke | RISK-11 | Planejado | - |
+| UI-02 | Validar exibição da lista/cards de heróis | UI | P0 | Sim | Conteúdo principal deve estar disponível | Smoke | RISK-11 | Concluído | heroes.spec.ts / UI-02 |
 
-| UI-03 | Validar presença de nome em heróis exibidos | UI | P1 | Sim | Garante informação essencial do card | Funcional | RISK-11 | Planejado | - |
+| UI-03 | Validar seleção de herói atualizando URL e conteúdo de detalhe | UI | P0 | Sim | Confirma o principal fluxo de seleção e navegação entre personagens | Smoke / Regressão | RISK-11 | Concluído | heroes.spec.ts / UI-03 |
 
-| UI-04 | Validar navegação para detalhe de herói | UI | P0 | Sim | Fluxo principal de navegação do portal | Smoke / E2E | RISK-11 | Planejado | - |
+| UI-04 | Validar navegação para detalhe de herói | UI | P0 | Sim | Fluxo principal de navegação do portal | Smoke / E2E | RISK-11 | Coberto por UI-03 | heroes.spec.ts / UI-03 |
 
-| UI-05 | Validar informações essenciais no detalhe | UI | P1 | Sim | Confirma que a navegação leva a conteúdo utilizável | Regressão | RISK-11 | Planejado | - |
+| UI-05 | Validar informações essenciais no detalhe | UI | P1 | Sim | Confirma que a navegação leva a conteúdo utilizável | Regressão | RISK-11 | Concluído | heroes.spec.ts / UI-05 |
 
 | UI-06 | Validar renderização das imagens principais | UI | P1 | Sim | Imagens são parte relevante da apresentação dos personagens | Regressão | RISK-12 | Planejado | - |
 
@@ -172,13 +172,14 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| RESP-01 | Validar fluxo principal em viewport desktop | UI | P1 | Sim | Representa execução principal da suíte | Responsive | RISK-11 | Planejado | - |
+| RESP-01 | Validar disponibilidade do conteúdo principal em viewport mobile 390x844 | UI | P1 | Sim | Confirma que o conteúdo essencial continua carregado em tela reduzida | Responsive | RISK-18 | Concluído | heroes-responsive.spec.ts / RESP-01 |
 
-| RESP-02 | Validar fluxo principal em viewport mobile | UI | P2 | Sim | Identifica quebra funcional relevante em tela reduzida | Responsive | RISK-11 | Planejado | - |
+| RESP-02 | Validar ausência de overflow horizontal em viewport mobile | UI | P1 | Sim | Overflow pode comprometer navegação e usabilidade | Responsive | RISK-18 | Known issue | RESP-DEF-01 / heroes-responsive.spec.ts |
 
-| RESP-03 | Validar viewport tablet | UI | P3 | Não inicialmente | Retorno menor para o prazo disponível; poderá ser evolução | Responsive | RISK-18 | Backlog | - |
+| RESP-03 | Validar que o seletor de heróis permanece dentro do viewport mobile | UI | P1 | Sim | Controle principal precisa permanecer acessível em tela reduzida | Responsive | RISK-18 | Known issue | RESP-DEF-01 / heroes-responsive.spec.ts |
+| RESP-04 | Validar viewport tablet | UI | P3 | Não inicialmente | Retorno menor para o prazo disponível; poderá ser evolução | Responsive | RISK-18 | Backlog | - |
 
-| A11Y-01 | Executar análise automatizada básica de acessibilidade | UI | P2 | Sim | Detecta violações automatizáveis com baixo custo | Accessibility | RISK-19 | Planejado | - |
+| A11Y-01 | Executar análise automatizada básica de acessibilidade | UI | P2 | Sim | Detecta violações automatizáveis com baixo custo | Accessibility | RISK-19 | Concluído com baseline conhecido | A11Y-DEF-01 / heroes-accessibility.spec.ts |
 
 | A11Y-02 | Avaliação manual completa de WCAG | UI | P3 | Não | Escopo e prazo não permitem declarar conformidade completa | Accessibility / Manual | RISK-19 | Fora do escopo | - |
 
@@ -222,9 +223,9 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| PERF-01 | Medir tempo de resposta de query GraphQL prioritária | Performance | P2 | Sim | Validação simples, segura e relevante para API | Performance | RISK-09 | Planejado | - |
+| PERF-01 | Medir tempo de resposta de query GraphQL prioritária | Performance | P2 | Sim | Validação simples, segura e relevante para API | Performance | RISK-09 | Concluído | k6 smoke: p95=817.8ms |
 
-| PERF-02 | Executar smoke de performance com baixa carga | Performance | P2 | Sim | Demonstra estratégia sem sobrecarregar serviço público | Performance / k6 | RISK-09 | Planejado | - |
+| PERF-02 | Executar smoke de performance com baixa carga | Performance | P2 | Sim | Demonstra estratégia sem sobrecarregar serviço público | Performance / k6 | RISK-09 | Concluído | performance/k6/smoke.js - 3 iterações, 0 falhas |
 
 | PERF-03 | Executar stress/load agressivo contra API pública | Performance | P3 | Não | Risco operacional e baixo benefício para o desafio | Performance | RISK-10 | Fora do escopo | - |
 
@@ -242,7 +243,7 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| BROWSER-01 | Executar smoke em Chromium | UI | P0 | Sim | Navegador principal da regressão | Compatibilidade | RISK-18 | Planejado | - |
+| BROWSER-01 | Executar smoke em Chromium | UI | P0 | Sim | Navegador principal da regressão | Compatibilidade | RISK-18 | Concluído | Playwright @smoke - 3 testes passando |
 
 | BROWSER-02 | Executar smoke em Firefox | UI | P2 | Sim | Cobertura complementar entre engines | Compatibilidade | RISK-18 | Planejado | - |
 
@@ -264,11 +265,11 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| EXP-01 | Explorar autenticação, queries e comportamento da Marvel Developer API | Exploratória | P0 | Não | Exploração direciona os cenários que serão automatizados posteriormente | Exploratório | RISK-02 | Em andamento | docs/exploratory-testing.md |
+| EXP-01 | Explorar autenticação, queries e comportamento da Marvel Developer API | Exploratória | P0 | Não | Exploração direciona os cenários automatizados | Exploratório | RISK-02 | Concluído | docs/exploratory-testing.md |
 
-| EXP-02 | Explorar listagem, navegação e detalhes no Marvel Rivals Heroes | Exploratória | P0 | Não | Confirma comportamento real antes da automação | Exploratório | RISK-15 | Planejado | docs/exploratory-testing.md |
+| EXP-02 | Explorar listagem, navegação e detalhes no Marvel Rivals Heroes | Exploratória | P0 | Não | Confirma comportamento real antes da automação | Exploratório | RISK-15 | Concluído | docs/exploratory-testing.md |
 
-| EXP-03 | Explorar comportamento diante de falhas e carregamentos lentos | Exploratória | P1 | Não | Ajuda a identificar riscos transversais e oportunidades de mocks | Exploratório | RISK-16 | Planejado | docs/exploratory-testing.md |
+| EXP-03 | Explorar comportamento diante de falhas e carregamentos lentos | Exploratória | P1 | Não | Ajuda a identificar riscos transversais e oportunidades de mocks | Exploratório | RISK-16 | Parcial | Carregamento assíncrono analisado; falhas de rede ainda pendentes |
 
 
 
