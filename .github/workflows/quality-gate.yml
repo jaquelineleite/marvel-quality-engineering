@@ -69,6 +69,17 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+      - name: Set up Node.js for Newman
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Run Postman API smoke collection with Newman
+        run: |
+          npx --yes newman@6.2.2 run \
+            postman/marvel-developer-api.postman_collection.json \
+            --env-var "MARVEL_API_TOKEN=$MARVEL_API_TOKEN"
+
       - name: Set up k6
         uses: grafana/setup-k6-action@v1
 
