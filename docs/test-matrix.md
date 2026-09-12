@@ -245,9 +245,9 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 | BROWSER-01 | Executar smoke em Chromium | UI | P0 | Sim | Navegador principal da regressão | Compatibilidade | RISK-18 | Concluído | Playwright @smoke - 3 testes passando |
 
-| BROWSER-02 | Executar smoke em Firefox | UI | P2 | Sim | Cobertura complementar entre engines | Compatibilidade | RISK-18 | Planejado | - |
+| BROWSER-02 | Executar smoke em Firefox | UI | P2 | Sim | Cobertura complementar entre engines | Compatibilidade | RISK-18 | Concluído | Playwright @smoke - 3/3 passando localmente e no GitHub Actions |
 
-| BROWSER-03 | Executar smoke em WebKit | UI | P2 | Sim | Cobertura complementar similar ao ecossistema Safari | Compatibilidade | RISK-18 | Planejado | - |
+| BROWSER-03 | Executar smoke em WebKit | UI | P2 | Sim | Cobertura complementar similar ao ecossistema Safari | Compatibilidade | RISK-18 | Concluído | Playwright @smoke - 3/3 passando localmente e no GitHub Actions |
 
 | BROWSER-04 | Executar regressão completa nos três browsers | UI | P3 | Não | Custo elevado sem ganho proporcional para este escopo | Compatibilidade | RISK-18 | Fora do escopo | - |
 

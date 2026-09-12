@@ -153,6 +153,32 @@ Resultado:
 
 ---
 
+## Cross-browser
+
+A estratégia cross-browser foi aplicada de forma seletiva e baseada em risco.
+
+O Chromium permanece como navegador principal para a suíte de qualidade completa. Firefox e WebKit executam a suíte `@smoke`, evitando triplicar desnecessariamente o custo da regressão.
+
+### Resultado local
+
+- Chromium: 3/3 testes smoke passando
+- Firefox: 3/3 testes smoke passando
+- WebKit: 3/3 testes smoke passando
+
+### Resultado no GitHub Actions
+
+O Quality Gate foi evoluído para executar:
+
+- Firefox: suíte `@smoke`
+- WebKit: suíte `@smoke`
+- Chromium: suíte principal completa
+
+A execução cross-browser do GitHub Actions terminou com status `Success`, assim como o Quality Gate final.
+
+A regressão completa nos três engines permanece fora do escopo deste desafio por custo de execução versus ganho esperado. A cobertura complementar em Firefox e WebKit foi concentrada nos fluxos críticos de smoke.
+
+---
+
 ## Acessibilidade
 
 Ferramentas:
@@ -289,8 +315,11 @@ Resultado da primeira execução:
 | k6 Performance Smoke | Thresholds Passed |
 | Playwright Smoke | 3/3 Passed |
 | Playwright Regression | 2/2 Passed |
-| Accessibility | Passed com baseline conhecido |
-| Responsive | Passed com 2 known issues monitorados |
+| Firefox Smoke | 3/3 Passed |
+| WebKit Smoke | 3/3 Passed |
+| Cross-browser CI | Success |
+| Accessibility | Gate Passed; critical conhecido mantido em baseline |
+| Responsive | 1 Passed + 2 Expected Failures (known issues) |
 | GitHub Actions API Job | Success |
 | GitHub Actions UI Job | Success |
 | Quality Gate | PASSED |
