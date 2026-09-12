@@ -44,6 +44,42 @@ Foram validados:
 
 ---
 
+## Postman / Newman
+
+### Collection executada
+
+Collection:
+
+`postman/marvel-developer-api.postman_collection.json`
+
+Cenários:
+
+- AUTH-01 - consulta autenticada;
+- AUTH-02 - requisição sem token;
+- AUTH-03 - token inválido.
+
+### Resultado local
+
+- Requests: 3
+- Failed requests: 0
+- Test scripts: 3
+- Failed test scripts: 0
+- Assertions: 8
+- Failed assertions: 0
+- Average response time: 592 ms
+
+**Postman/Newman: 3 requisições e 8 assertions aprovadas.**
+
+### CI/CD
+
+A collection também foi integrada ao job de API do GitHub Actions utilizando Newman 6.2.2.
+
+A execução do Quality Gate após a integração terminou com status `Success`.
+
+O token é fornecido pelo GitHub Actions Secret `MARVEL_API_TOKEN` e não é armazenado na collection ou no repositório.
+
+---
+
 ## Performance - k6
 
 ### Estratégia
@@ -249,6 +285,7 @@ Resultado da primeira execução:
 | Camada | Resultado |
 | --- | --- |
 | Robot Framework API | 12/12 Passed |
+| Postman / Newman | 3 requests / 8 assertions / 0 failures |
 | k6 Performance Smoke | Thresholds Passed |
 | Playwright Smoke | 3/3 Passed |
 | Playwright Regression | 2/2 Passed |
