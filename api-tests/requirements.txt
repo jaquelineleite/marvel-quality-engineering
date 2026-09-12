@@ -1,0 +1,4 @@
+robotframework==7.4.2
+robotframework-requests==0.9.7
+python-dotenv==1.2.3
+requests==2.34.2
