@@ -106,15 +106,23 @@ jobs:
         working-directory: ui-tests
         run: npm ci
 
-      - name: Install Chromium
+      - name: Install Playwright browsers
         working-directory: ui-tests
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Validate TypeScript
         working-directory: ui-tests
         run: npx tsc --noEmit
 
-      - name: Run Playwright quality suite
+      - name: Run Firefox smoke tests
+        working-directory: ui-tests
+        run: npx playwright test --grep @smoke --project=firefox
+
+      - name: Run WebKit smoke tests
+        working-directory: ui-tests
+        run: npx playwright test --grep @smoke --project=webkit
+
+      - name: Run Chromium quality suite
         working-directory: ui-tests
         run: npx playwright test --project=chromium
 
