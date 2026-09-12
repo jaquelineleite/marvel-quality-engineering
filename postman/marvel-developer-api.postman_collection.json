@@ -1,0 +1,164 @@
+{
+  "info": {
+    "_postman_id": "4f8bf53d-b4d7-4e37-9e7e-marvelqe2026",
+    "name": "Marvel Developer API - Quality Engineering",
+    "description": "Collection used for API smoke, authentication and negative validation against the Marvel Developer GraphQL API. Secrets are injected through variables and are not stored in the repository.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "MARVEL_API_URL",
+      "value": "https://api.marvelapp.com/graphql/"
+    }
+  ],
+  "item": [
+    {
+      "name": "AUTH-01 - Authenticated user query",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{MARVEL_API_TOKEN}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"query { user { pk username } }\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{MARVEL_API_URL}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('HTTP status is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const body = pm.response.json();",
+              "",
+              "pm.test('Response contains data.user', function () {",
+              "    pm.expect(body).to.have.property('data');",
+              "    pm.expect(body.data).to.have.property('user');",
+              "    pm.expect(body.data.user).to.not.equal(null);",
+              "});",
+              "",
+              "pm.test('User contract is valid', function () {",
+              "    pm.expect(Number(body.data.user.pk)).to.be.above(0);",
+              "    pm.expect(body.data.user.username).to.be.a('string').and.not.empty;",
+              "});",
+              "",
+              "pm.test('Response has no GraphQL errors', function () {",
+              "    pm.expect(body).to.not.have.property('errors');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "AUTH-02 - Request without token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"query { user { pk username } }\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{MARVEL_API_URL}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('HTTP status is 400', function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "const body = pm.response.json();",
+              "",
+              "pm.test('GraphQL errors are returned', function () {",
+              "    pm.expect(body.errors).to.be.an('array').and.not.empty;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "AUTH-03 - Invalid token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer invalid-token-for-negative-test",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"query { user { pk username } }\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{MARVEL_API_URL}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('HTTP status is 401', function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "const body = pm.response.json();",
+              "",
+              "pm.test('Invalid token error is returned', function () {",
+              "    pm.expect(body.errors).to.be.an('array').and.not.empty;",
+              "    pm.expect(body.errors[0].message).to.include('OAuth2 token expired or invalid');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
