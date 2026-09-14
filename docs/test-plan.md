@@ -300,7 +300,7 @@ A solução depende de:
 
 
 
-A estratégia segue uma abordagem em camadas.
+A estratégia segue os princípios da Pirâmide de Testes e uma abordagem em camadas, concentrando maior cobertura em API e contrato e mantendo a automação de UI seletiva e orientada a risco.
 
 
 
@@ -316,7 +316,7 @@ Ferramentas principais:
 
 - Python;
 
-- RequestsLibrary ou biblioteca compatível com chamadas GraphQL.
+- Python requests encapsulado em client reutilizável para chamadas GraphQL.
 
 
 
@@ -520,7 +520,7 @@ Exemplos:
 
 
 
-Falhas P0 deverão bloquear o Quality Gate.
+Falhas P0 são obrigatoriamente bloqueadoras. Na implementação atual do pipeline, qualquer falha não esperada em uma validação automatizada executada pelo Quality Gate também poderá bloquear a execução.
 
 
 
@@ -548,7 +548,7 @@ Exemplos:
 
 
 
-Falhas P1 serão avaliadas como potenciais bloqueadoras dependendo do risco.
+Falhas P1 são priorizadas pela criticidade e, quando fazem parte das suítes executadas no pipeline, falhas não esperadas bloqueiam o Quality Gate.
 
 
 
@@ -1048,23 +1048,47 @@ A pipeline executa:
 
 
 
-O Quality Gate é orientado por criticidade.
+O Quality Gate combina priorização por criticidade com o resultado técnico das suítes automatizadas executadas no pipeline.
+
+
+
+Na implementação atual, o gate final depende do sucesso integral dos jobs de API e UI.
+
+
+
+O job de API executa:
+
+- Robot Framework;
+
+- Postman/Newman;
+
+- performance smoke com k6.
+
+
+
+O job de UI executa:
+
+- smoke em Firefox;
+
+- smoke em WebKit;
+
+- suíte de qualidade em Chromium.
 
 
 
 Critérios adotados:
 
+- falhas P0 são obrigatoriamente bloqueadoras;
 
+- falhas não esperadas nas validações automatizadas executadas pelo pipeline tornam o respectivo job não aprovado;
 
-- falha de P0 bloqueia;
+- falha em qualquer job obrigatório de API ou UI bloqueia o Quality Gate final;
 
-- falha do smoke de API bloqueia;
+- quebras críticas de contrato bloqueiam;
 
-- falha do smoke crítico de UI bloqueia;
+- criticidades P1, P2 e P3 continuam sendo utilizadas para priorização, análise de risco e decisão de cobertura;
 
-- quebra de contrato crítico bloqueia;
-
-- falhas P2/P3 serão analisadas conforme impacto.
+- problemas conhecidos deverão ser explicitamente documentados e tratados de forma transparente, sem mascarar novas regressões.
 
 
 
@@ -1142,13 +1166,15 @@ A execução será considerada aprovada quando:
 
 
 
+- os jobs obrigatórios de API e UI executados no pipeline estiverem aprovados;
+
 - todos os testes P0 automatizados estiverem passando;
 
 - não houver quebra crítica de contrato;
 
 - não houver falha bloqueadora conhecida sem documentação;
 
-- Quality Gate estiver aprovado.
+- o Quality Gate final estiver aprovado.
 
 
 
@@ -1166,13 +1192,17 @@ A execução será considerada não aprovada quando ocorrer:
 
 - falha P0;
 
+- falha não esperada em validação automatizada obrigatória executada pelo pipeline;
+
+- falha em qualquer job obrigatório de API ou UI;
+
 - autenticação crítica indisponível;
 
 - quebra de contrato crítico;
 
 - indisponibilidade comprovadamente causada pela aplicação alvo em cenário crítico;
 
-- falha de Quality Gate.
+- falha do Quality Gate final.
 
 
 
