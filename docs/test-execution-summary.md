@@ -106,9 +106,9 @@ Configuração:
 - Checks executados: 18
 - Checks aprovados: 100%
 - GraphQL errors: 0%
-- HTTP request duration p95: 817.8 ms
-- HTTP request duration média: 470.01 ms
-- HTTP request duration máxima: 878.95 ms
+- HTTP request duration p95: 859.36 ms
+- HTTP request duration média: 484.96 ms
+- HTTP request duration máxima: 925.08 ms
 
 ### Resultado
 
@@ -141,15 +141,18 @@ Resultado:
 Cenários executados:
 
 - UI-03 - seleção e navegação de personagem;
-- UI-05 - informações funcionais no detalhe do herói.
+- UI-05 - informações funcionais no detalhe do herói;
+- UI-06 - renderização das imagens principais;
+- UI-10 - ausência de erros críticos no console durante o fluxo principal;
+- UI-11 - ausência de falhas HTTP críticas durante o fluxo principal.
 
 Resultado:
 
-- Total: 2
-- Passed: 2
+- Total: 5
+- Passed: 5
 - Failed: 0
 
-**Regressão: 2/2 aprovada.**
+**Regressão: 5/5 aprovada.**
 
 ---
 
@@ -314,7 +317,8 @@ Resultado da primeira execução:
 | Postman / Newman | 3 requests / 8 assertions / 0 failures |
 | k6 Performance Smoke | Thresholds Passed |
 | Playwright Smoke | 3/3 Passed |
-| Playwright Regression | 2/2 Passed |
+| Playwright Regression | 5/5 Passed |
+| Chromium Full Suite | 11/11 Passed |
 | Firefox Smoke | 3/3 Passed |
 | WebKit Smoke | 3/3 Passed |
 | Cross-browser CI | Success |

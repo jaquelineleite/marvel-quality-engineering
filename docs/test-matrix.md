@@ -223,7 +223,7 @@ Esta matriz representa a cobertura final definida para o desafio, incluindo cen�
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| PERF-01 | Medir tempo de resposta de query GraphQL prioritária | Performance | P2 | Sim | Validação simples, segura e relevante para API | Performance | RISK-09 | Concluído | k6 smoke: p95=817.8ms |
+| PERF-01 | Medir tempo de resposta de query GraphQL prioritária | Performance | P2 | Sim | Validação simples, segura e relevante para API | Performance | RISK-09 | Concluído | k6 smoke: p95=859.36ms |
 
 | PERF-02 | Executar smoke de performance com baixa carga | Performance | P2 | Sim | Demonstra estratégia sem sobrecarregar serviço público | Performance / k6 | RISK-09 | Concluído | performance/k6/smoke.js - 3 iterações, 0 falhas |
 

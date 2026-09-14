@@ -299,12 +299,13 @@ O Quality Gate somente é aprovado quando os jobs críticos de API e UI terminam
 | Postman / Newman | 3 requests / 8 assertions / 0 failures |
 | k6 Performance Smoke | Todos os thresholds aprovados |
 | Playwright Smoke | 3/3 Passed |
-| Playwright Regression | 2/2 Passed |
+| Playwright Regression | 5/5 Passed |
+| Chromium Full Suite | 11/11 Passed |
 | Firefox Smoke | 3/3 Passed |
 | WebKit Smoke | 3/3 Passed |
 | Cross-browser CI | Success |
 | Accessibility | Gate Passed com critical conhecido em baseline |
-| Responsive | 1 Passed + 2 Expected Failures |
+| Responsive | 1 Passed + 2 Expected Failures (known issues) |
 | GitHub Actions API Job | Success |
 | GitHub Actions UI Job | Success |
 | Quality Gate | PASSED |
@@ -405,7 +406,7 @@ Configuração executada:
 - 18 checks;
 - 100% dos checks aprovados;
 - 0% de erros GraphQL;
-- p95 observado de 817.8 ms.
+- p95 observado de 859.36 ms.
 
 A carga foi deliberadamente limitada porque a API é um serviço externo sem autorização para teste de carga intensivo.
 
