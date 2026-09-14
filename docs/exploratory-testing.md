@@ -86,7 +86,7 @@ Resultados observados:
 - 0 requisições HTTP com falha;
 - 18 checks aprovados;
 - `graphql_errors = 0%`;
-- `http_req_duration p95 = 817.8 ms`;
+- `http_req_duration p95 = 859.36 ms`;
 - todas as thresholds aprovadas.
 
 O limite de `p95 < 3000 ms` foi adotado como threshold de smoke para uma API pública externa e não representa SLA oficial do serviço.
@@ -213,4 +213,4 @@ As principais decisões derivadas dessa atividade foram:
 - identificação de limitações responsivas;
 - uso de baseline explícito para problemas existentes em aplicação externa.
 
-Essas descobertas serão consideradas na matriz de testes, no resumo de execução e na definição do Quality Gate do projeto.
+Essas descobertas foram consideradas na matriz de testes, no resumo de execução e na definição do Quality Gate do projeto.
