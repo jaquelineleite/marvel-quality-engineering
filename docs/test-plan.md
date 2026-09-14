@@ -10,7 +10,7 @@ Este plano define a estratégia de qualidade para o desafio técnico de Analista
 
 
 
-A abordagem será orientada por risco, priorizando cenários de maior impacto e maior capacidade de fornecer feedback rápido.
+A abordagem é orientada por risco, priorizando cenários de maior impacto e maior capacidade de fornecer feedback rápido.
 
 
 
@@ -40,7 +40,7 @@ Durante o processo seletivo, a API Marvel Rivals originalmente indicada apresent
 
 
 
-Conforme orientação posterior dos avaliadores, a camada de API será executada utilizando a Marvel Developer API indicada no segundo comunicado.
+Conforme orientação posterior dos avaliadores, a camada de API foi executada utilizando a Marvel Developer API indicada no segundo comunicado.
 
 
 
@@ -52,13 +52,13 @@ Por esse motivo:
 
 
 
-- a API e o frontend serão tratados como alvos independentes;
+- a API e o frontend são tratados como alvos independentes;
 
-- não será assumida integração direta entre eles;
+- não foi assumida integração direta entre eles;
 
-- os cenários de API serão adaptados aos recursos realmente disponíveis;
+- os cenários de API foram adaptados aos recursos realmente disponíveis;
 
-- não serão criados cenários fictícios de heróis na API alternativa.
+- não foram criados cenários fictícios de heróis na API alternativa.
 
 
 
@@ -74,7 +74,7 @@ Por esse motivo:
 
 
 
-Cobertura planejada para a Marvel Developer API:
+Cobertura definida para a Marvel Developer API:
 
 
 
@@ -108,7 +108,7 @@ Cobertura planejada para a Marvel Developer API:
 
 
 
-Cobertura planejada para Marvel Rivals Heroes:
+Cobertura definida para Marvel Rivals Heroes:
 
 
 
@@ -140,7 +140,7 @@ Cobertura planejada para Marvel Rivals Heroes:
 
 
 
-Serão realizadas sessões exploratórias para:
+Foram realizadas sessões exploratórias para:
 
 
 
@@ -160,11 +160,11 @@ Serão realizadas sessões exploratórias para:
 
 
 
-Será realizada avaliação pontual e não invasiva de performance.
+Foi realizada avaliação pontual e não invasiva de performance.
 
 
 
-O objetivo será validar:
+O objetivo foi validar:
 
 
 
@@ -178,7 +178,7 @@ O objetivo será validar:
 
 
 
-Não será executado teste agressivo de carga contra serviços públicos de terceiros.
+Não foi executado teste agressivo de carga contra serviços públicos de terceiros.
 
 
 
@@ -300,7 +300,7 @@ A solução depende de:
 
 
 
-A estratégia seguirá uma abordagem em camadas.
+A estratégia segue uma abordagem em camadas.
 
 
 
@@ -320,7 +320,7 @@ Ferramentas principais:
 
 
 
-Esta camada terá maior concentração de cenários automatizados por apresentar:
+Esta camada concentra maior quantidade de cenários automatizados por apresentar:
 
 
 
@@ -340,11 +340,11 @@ Esta camada terá maior concentração de cenários automatizados por apresentar
 
 
 
-Serão realizadas validações estruturais sobre respostas da API.
+Foram realizadas validações estruturais sobre respostas da API.
 
 
 
-Serão avaliados, quando aplicável:
+Foram avaliados, quando aplicável:
 
 
 
@@ -384,11 +384,11 @@ Ferramentas principais:
 
 
 
-A automação de interface será seletiva e orientada a risco.
+A automação de interface foi implementada de forma seletiva e orientada a risco.
 
 
 
-Serão priorizados:
+Foram priorizados:
 
 
 
@@ -412,15 +412,15 @@ Serão priorizados:
 
 
 
-Será utilizada automação básica com axe-core quando aplicável.
+Foi utilizada automação básica com axe-core.
 
 
 
-A análise automatizada será tratada como apoio.
+A análise automatizada foi tratada como apoio.
 
 
 
-Não será declarada conformidade completa com WCAG apenas com base em ferramenta automatizada.
+Não é declarada conformidade completa com WCAG apenas com base em ferramenta automatizada.
 
 
 
@@ -428,11 +428,11 @@ Não será declarada conformidade completa com WCAG apenas com base em ferrament
 
 
 
-Será utilizada validação leve de performance.
+Foi utilizada validação leve de performance.
 
 
 
-Poderá envolver:
+A implementação envolveu:
 
 
 
@@ -442,7 +442,7 @@ Poderá envolver:
 
 
 
-O objetivo será identificar riscos e demonstrar abordagem técnica sem causar impacto relevante em sistemas públicos.
+O objetivo foi identificar riscos e demonstrar abordagem técnica sem causar impacto relevante em sistemas públicos.
 
 
 
@@ -450,7 +450,7 @@ O objetivo será identificar riscos e demonstrar abordagem técnica sem causar i
 
 
 
-Sessões exploratórias serão utilizadas antes e durante a automação.
+Sessões exploratórias foram utilizadas antes e durante a automação.
 
 
 
@@ -478,7 +478,7 @@ Os resultados poderão gerar:
 
 
 
-A priorização será baseada em:
+A priorização foi baseada em:
 
 
 
@@ -640,7 +640,7 @@ Um cenário poderá permanecer manual quando:
 
 
 
-A suíte de API será organizada em grupos.
+A suíte de API foi organizada em grupos.
 
 
 
@@ -746,7 +746,7 @@ Validar:
 
 
 
-A suíte frontend será dividida principalmente entre:
+A suíte frontend foi dividida principalmente entre:
 
 
 
@@ -808,11 +808,11 @@ Validação funcional em diferentes viewports.
 
 
 
-A regressão principal será executada prioritariamente em Chromium.
+A regressão principal é executada prioritariamente em Chromium.
 
 
 
-O smoke poderá ser executado em:
+O smoke cross-browser é executado em:
 
 
 
@@ -868,7 +868,7 @@ Credenciais jamais serão tratadas como dados de teste versionáveis.
 
 
 
-Credenciais serão armazenadas apenas em:
+Credenciais são armazenadas apenas em:
 
 
 
@@ -878,7 +878,7 @@ Credenciais serão armazenadas apenas em:
 
 
 
-O projeto possuirá:
+O projeto possui:
 
 
 
@@ -916,7 +916,7 @@ Nenhum valor real deverá ser versionado.
 
 
 
-Na automação frontend serão evitados:
+Na automação frontend são evitados:
 
 
 
@@ -930,7 +930,7 @@ Na automação frontend serão evitados:
 
 
 
-O Playwright deverá utilizar:
+O Playwright utiliza:
 
 
 
@@ -1010,11 +1010,11 @@ O objetivo é diferenciar:
 
 
 
-A execução contínua será implementada com GitHub Actions.
+A execução contínua foi implementada com GitHub Actions.
 
 
 
-A pipeline deverá executar, progressivamente:
+A pipeline executa:
 
 
 
@@ -1048,11 +1048,11 @@ A pipeline deverá executar, progressivamente:
 
 
 
-O Quality Gate será orientado por criticidade.
+O Quality Gate é orientado por criticidade.
 
 
 
-Critérios iniciais:
+Critérios adotados:
 
 
 
@@ -1068,7 +1068,7 @@ Critérios iniciais:
 
 
 
-O gate poderá evoluir conforme os testes forem implementados e estabilizados.
+O gate poderá evoluir conforme a suíte, os riscos e as necessidades de qualidade do projeto evoluam.
 
 
 
@@ -1188,7 +1188,7 @@ Falhas externas deverão ser classificadas separadamente antes de concluir regre
 
 
 
-A regressão será dividida em níveis.
+A regressão é dividida em níveis.
 
 
 
@@ -1236,7 +1236,7 @@ A separação permite equilibrar cobertura, velocidade e custo.
 
 
 
-Os testes exploratórios utilizarão charters simples.
+Os testes exploratórios utilizaram charters simples.
 
 
 
@@ -1262,7 +1262,7 @@ Cada sessão poderá registrar:
 
 
 
-A exploração complementará a automação e ajudará a evitar testes baseados apenas no enunciado.
+A exploração complementou a automação e ajudou a evitar testes baseados apenas no enunciado.
 
 
 
@@ -1294,7 +1294,7 @@ A solução possui limitações relacionadas a:
 
 
 
-Essas limitações serão mantidas em documentação específica.
+Essas limitações estão registradas na documentação do projeto.
 
 
 
@@ -1306,11 +1306,11 @@ Essas limitações serão mantidas em documentação específica.
 
 
 
-IA será utilizada como ferramenta de apoio.
+IA foi utilizada como ferramenta de apoio.
 
 
 
-Possíveis usos:
+Usos registrados:
 
 
 
@@ -1360,7 +1360,7 @@ As decisões finais de:
 
 
 
-serão validadas e assumidas pela candidata.
+foram validadas e assumidas pela candidata.
 
 
 
@@ -1372,7 +1372,7 @@ serão validadas e assumidas pela candidata.
 
 
 
-A solução deverá favorecer:
+A solução foi estruturada para favorecer:
 
 
 
@@ -1396,11 +1396,11 @@ A solução deverá favorecer:
 
 
 
-A quantidade de testes não será utilizada como principal indicador de qualidade.
+A quantidade de testes não foi utilizada como principal indicador de qualidade.
 
 
 
-O foco será cobertura relevante com manutenção sustentável.
+O foco é cobertura relevante com manutenção sustentável.
 
 
 
@@ -1416,9 +1416,9 @@ A estratégia proposta prioriza qualidade contínua e prevenção de defeitos de
 
 
 
-A automação será utilizada como mecanismo de feedback e controle de risco, e não como objetivo isolado.
+A automação foi utilizada como mecanismo de feedback e controle de risco, e não como objetivo isolado.
 
 
 
-As decisões técnicas deverão permanecer rastreáveis por documentação, código, evidências e histórico de versionamento.
+As decisões técnicas permanecem rastreáveis por documentação, código, evidências e histórico de versionamento.
 
