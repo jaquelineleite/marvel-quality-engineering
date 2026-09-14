@@ -62,6 +62,235 @@ As principais camadas são:
 
 ---
 
+## Instalação e execução local
+
+### Pré-requisitos
+
+Para executar todas as camadas localmente, é necessário ter instalado:
+
+- Git;
+- Python 3.12;
+- Node.js 22;
+- npm;
+- k6;
+- uma credencial válida para a Marvel Developer API.
+
+As versões utilizadas no pipeline estão definidas em `.github/workflows/quality-gate.yml`.
+
+---
+
+### Clonar o repositório
+
+```bash
+git clone https://github.com/jaquelineleite/marvel-quality-engineering.git
+cd marvel-quality-engineering
+```
+
+---
+
+### Configuração da API
+
+O repositório contém o arquivo:
+
+```text
+.env.example
+```
+
+Crie uma cópia local:
+
+```bash
+cp .env.example .env
+```
+
+Configure o token somente no arquivo `.env` local:
+
+```env
+MARVEL_API_URL=https://api.marvelapp.com/graphql/
+MARVEL_API_TOKEN=SEU_TOKEN
+```
+
+> O arquivo `.env` não deve ser versionado. Apenas `.env.example`, sem credenciais reais, permanece no repositório.
+
+Para ferramentas executadas diretamente pelo shell, disponibilize o token como variável de ambiente.
+
+No Git Bash:
+
+```bash
+export MARVEL_API_TOKEN="SEU_TOKEN"
+```
+
+---
+
+### API — Robot Framework
+
+A partir da raiz do repositório, crie e ative um ambiente virtual.
+
+#### Windows / Git Bash
+
+```bash
+python -m venv .venv
+source .venv/Scripts/activate
+```
+
+#### Linux / macOS
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Instale as dependências:
+
+```bash
+pip install -r api-tests/requirements.txt
+```
+
+Execute a suíte:
+
+```bash
+robot --outputdir api-tests/results api-tests/tests
+```
+
+Os relatórios do Robot Framework serão gerados em:
+
+```text
+api-tests/results/
+```
+
+---
+
+### API Smoke — Postman / Newman
+
+Com `MARVEL_API_TOKEN` disponível como variável de ambiente, execute a partir da raiz:
+
+```bash
+npx --yes newman@6.2.2 run \
+  postman/marvel-developer-api.postman_collection.json \
+  --env-var "MARVEL_API_TOKEN=$MARVEL_API_TOKEN"
+```
+
+A collection também pode ser importada e executada diretamente no Postman.
+
+Mais detalhes estão disponíveis em:
+
+```text
+postman/README.md
+```
+
+---
+
+### Performance Smoke — k6
+
+Com o k6 instalado e o token configurado no ambiente:
+
+```bash
+k6 run performance/k6/smoke.js
+```
+
+O teste utiliza carga reduzida propositalmente, por se tratar de uma API externa sem autorização para execução de carga intensiva.
+
+---
+
+### UI — Playwright
+
+Acesse a pasta:
+
+```bash
+cd ui-tests
+```
+
+Instale as dependências:
+
+```bash
+npm ci
+```
+
+Instale os browsers utilizados pela automação:
+
+```bash
+npx playwright install chromium firefox webkit
+```
+
+Execute a suíte principal:
+
+```bash
+npm test
+```
+
+#### Smoke
+
+```bash
+npm run test:smoke
+```
+
+#### Regressão
+
+```bash
+npm run test:regression
+```
+
+#### Execução visual
+
+```bash
+npm run test:headed
+```
+
+#### Relatório Playwright
+
+```bash
+npm run report
+```
+
+---
+
+### Cross-browser
+
+Smoke no Firefox:
+
+```bash
+npx playwright test --grep @smoke --project=firefox
+```
+
+Smoke no WebKit:
+
+```bash
+npx playwright test --grep @smoke --project=webkit
+```
+
+Suíte Chromium:
+
+```bash
+npx playwright test --project=chromium
+```
+
+---
+
+### Execução via CI/CD
+
+O workflow:
+
+```text
+.github/workflows/quality-gate.yml
+```
+
+é executado automaticamente em:
+
+- `push` para `main`;
+- `pull_request` para `main`;
+- execução manual através de `workflow_dispatch`.
+
+No GitHub Actions, a credencial da API deve ser configurada como:
+
+```text
+MARVEL_API_TOKEN
+```
+
+em **Repository Secrets**.
+
+O Quality Gate somente é aprovado quando os jobs críticos de API e UI terminam com sucesso.
+
+---
+
 ## Resultados executados
 
 | Camada | Resultado |
