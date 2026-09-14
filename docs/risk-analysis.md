@@ -138,7 +138,7 @@ A classificação final considera a combinação entre probabilidade e impacto.
 
 | RISK-20 | Pipeline falhar por dependência de serviço externo e não por regressão | Média | Alto | Alto | Preservar logs, relatórios e evidências para diferenciar falha funcional de falha ambiental | CI/CD |
 
-| RISK-21 | Quality Gate excessivamente rígido bloquear por cenário não crítico | Média | Médio | Médio | Bloquear somente cenários críticos/P0 e definir critérios explícitos | CI/CD |
+| RISK-21 | Quality Gate excessivamente rígido bloquear por cenário não crítico | Média | Médio | Médio | Definir critérios explícitos do Quality Gate, manter priorização por criticidade e tratar known issues de forma controlada sem mascarar novas regressões | CI/CD |
 
 | RISK-22 | Excesso de automação tornar a solução difícil de manter | Média | Médio | Médio | Priorizar automação seletiva baseada em risco | Estratégia |
 
@@ -147,6 +147,8 @@ A classificação final considera a combinação entre probabilidade e impacto.
 | RISK-24 | Uso de IA gerar conteúdo incorreto ou não validado | Média | Alto | Alto | Validar sugestões contra documentação, execução real e revisão manual | Processo |
 
 | RISK-25 | Commits grandes ou pouco claros prejudicarem avaliação da evolução | Média | Médio | Médio | Manter commits incrementais, coesos e com mensagens descritivas | GitHub |
+
+| RISK-26 | Layout responsivo comprometer acesso ao conteúdo ou controles em dispositivos móveis | Média | Alto | Alto | Validar viewport mobile, overflow e posicionamento dos controles | UI / Responsividade |
 
 
 
@@ -319,4 +321,3 @@ Mesmo após as mitigações, permanecerão riscos associados a:
 
 
 Esses riscos serão registrados como limitações conhecidas e considerados durante a interpretação dos resultados da automação.
-

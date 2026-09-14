@@ -172,12 +172,12 @@ Esta matriz representa a cobertura final definida para o desafio, incluindo cen�
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| RESP-01 | Validar disponibilidade do conteúdo principal em viewport mobile 390x844 | UI | P1 | Sim | Confirma que o conteúdo essencial continua carregado em tela reduzida | Responsive | RISK-18 | Concluído | heroes-responsive.spec.ts / RESP-01 |
+| RESP-01 | Validar disponibilidade do conteúdo principal em viewport mobile 390x844 | UI | P1 | Sim | Confirma que o conteúdo essencial continua carregado em tela reduzida | Responsive | RISK-26 | Concluído | heroes-responsive.spec.ts / RESP-01 |
 
-| RESP-02 | Validar ausência de overflow horizontal em viewport mobile | UI | P1 | Sim | Overflow pode comprometer navegação e usabilidade | Responsive | RISK-18 | Known issue | RESP-DEF-01 / heroes-responsive.spec.ts |
+| RESP-02 | Validar ausência de overflow horizontal em viewport mobile | UI | P1 | Sim | Overflow pode comprometer navegação e usabilidade | Responsive | RISK-26 | Known issue | RESP-DEF-01 / heroes-responsive.spec.ts |
 
-| RESP-03 | Validar que o seletor de heróis permanece dentro do viewport mobile | UI | P1 | Sim | Controle principal precisa permanecer acessível em tela reduzida | Responsive | RISK-18 | Known issue | RESP-DEF-01 / heroes-responsive.spec.ts |
-| RESP-04 | Validar viewport tablet | UI | P3 | Não inicialmente | Retorno menor para o prazo disponível; poderá ser evolução | Responsive | RISK-18 | Backlog | - |
+| RESP-03 | Validar que o seletor de heróis permanece dentro do viewport mobile | UI | P1 | Sim | Controle principal precisa permanecer acessível em tela reduzida | Responsive | RISK-26 | Known issue | RESP-DEF-01 / heroes-responsive.spec.ts |
+| RESP-04 | Validar viewport tablet | UI | P3 | Não inicialmente | Retorno menor para o prazo disponível; poderá ser evolução | Responsive | RISK-26 | Backlog | - |
 
 | A11Y-01 | Executar análise automatizada básica de acessibilidade | UI | P2 | Sim | Detecta violações automatizáveis com baixo custo | Accessibility | RISK-19 | Concluído com baseline conhecido | A11Y-DEF-01 / heroes-accessibility.spec.ts |
 
@@ -308,4 +308,3 @@ Cenários mantidos em `Backlog` ou `Fora do escopo` representam decisões consci
 
 
 Cenários marcados como `Fora do escopo` permanecem documentados para demonstrar análise e decisão consciente de não automatização.
-
