@@ -28,6 +28,8 @@ Por isso, API e UI são tratadas como **alvos independentes de qualidade**, sem 
 
 A solução foi construída incrementalmente e orientada por risco.
 
+A estratégia também segue os princípios da Pirâmide de Testes, concentrando maior cobertura nas camadas de API e contrato, que oferecem feedback mais rápido e menor custo de execução, enquanto a automação de UI é seletiva e direcionada aos fluxos de maior risco. Performance, acessibilidade e cross-browser complementam a cobertura conforme os riscos identificados.
+
 As principais camadas são:
 
 - análise e priorização de riscos;
@@ -51,7 +53,7 @@ As principais camadas são:
 | Camada | Tecnologia |
 | --- | --- |
 | API principal | Robot Framework + Python |
-| HTTP / GraphQL | RequestsLibrary + client Python |
+| HTTP / GraphQL | Python requests + client Python |
 | API complementar | Postman + Newman |
 | UI | Playwright + TypeScript |
 | Acessibilidade | axe-core + Playwright |
@@ -417,7 +419,7 @@ Configuração executada:
 - 18 checks;
 - 100% dos checks aprovados;
 - 0% de erros GraphQL;
-- p95 observado de 859.36 ms.
+- threshold de latência p95 < 3000 ms aprovado.
 
 A carga foi deliberadamente limitada porque a API é um serviço externo sem autorização para teste de carga intensivo.
 
