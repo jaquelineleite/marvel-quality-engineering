@@ -37,6 +37,16 @@ export class HeroesPage {
     return this.page.locator('li[data-id][data-index]:visible');
   }
 
+  visibleHeroImages(): Locator {
+    return this.page.locator('li[data-id][data-index]:visible img');
+  }
+
+  async countVisibleCardsWithoutImage(): Promise<number> {
+    return this.visibleHeroCards().evaluateAll(cards =>
+      cards.filter(card => !card.querySelector('img[src]')).length
+    );
+  }
+
   async getHeroDetailsText(): Promise<string> {
     await expect(this.heroDetails).toBeVisible();
 

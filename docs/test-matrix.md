@@ -10,7 +10,7 @@ Esta matriz apresenta os cenários identificados para o desafio, sua camada, pri
 
 
 
-A matriz será atualizada conforme o discovery técnico e a implementação evoluírem.
+Esta matriz representa a cobertura final definida para o desafio, incluindo cenários automatizados, validações parciais, known issues, backlog e decisões conscientes de não automação.
 
 
 
@@ -38,7 +38,7 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 - Sim — cenário selecionado para automação.
 
-- Parcial — parte será automatizada e parte permanecerá exploratória/manual.
+- Concluído com limitações — cenário analisado/executado dentro do escopo disponível, com limitações explicitamente documentadas.
 
 - Não — cenário documentado, mas automação não se justifica no escopo atual.
 
@@ -64,7 +64,7 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 | AUTH-04 | Validar que token não aparece em código ou logs | Segurança | P0 | Sim | Evita exposição de segredo no repositório e pipeline | Segurança | RISK-04 | Validado localmente | .env ignorado + secret scan com git grep |
 
-| AUTH-05 | Validar token expirado ou revogado | API | P2 | Parcial | Depende da possibilidade segura de revogação/expiração durante o desafio | Segurança / Negativo | RISK-03 | A validar | - |
+| AUTH-05 | Validar token expirado ou revogado | API | P2 | Não | A criação intencional de credencial expirada/revogada não é necessária para o escopo e poderia gerar dependência externa sem ganho proporcional | Segurança / Negativo | RISK-03 | Backlog | - |
 
 
 
@@ -116,9 +116,9 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 | NEG-03 | Enviar variável com tipo incompatível | API | P1 | Sim | Valida tratamento de tipo inválido | Negativo | RISK-06 | Concluído | api_negative.robot |
 
-| NEG-04 | Enviar valor vazio em campo obrigatório quando aplicável | API | P2 | Sim | Exercita validação de entrada da API | Negativo | RISK-06 | A validar | - |
+| NEG-04 | Enviar valor vazio em campo obrigatório quando aplicável | API | P2 | Não neste escopo | O schema explorado não forneceu um caso prioritário que justificasse criar mutação ou dependência adicional apenas para essa validação | Negativo | RISK-06 | Backlog | - |
 
-| NEG-05 | Consultar recurso inexistente quando suportado | API | P2 | Sim | Valida resposta para identificador sem correspondência | Negativo | RISK-07 | A validar | - |
+| NEG-05 | Consultar recurso inexistente quando suportado | API | P2 | Não neste escopo | A cobertura negativa prioritária já contempla query inválida, campo inexistente, tipo incompatível e estrutura de errors; recurso inexistente permanece como evolução | Negativo | RISK-07 | Backlog | - |
 
 | NEG-06 | Validar estrutura do objeto errors | API / Contrato | P1 | Sim | Assegura que falhas retornem informação estruturada para diagnóstico | Contrato / Negativo | RISK-06 | Concluído | api_negative.robot |
 
@@ -146,17 +146,17 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 | UI-05 | Validar informações essenciais no detalhe | UI | P1 | Sim | Confirma que a navegação leva a conteúdo utilizável | Regressão | RISK-11 | Concluído | heroes.spec.ts / UI-05 |
 
-| UI-06 | Validar renderização das imagens principais | UI | P1 | Sim | Imagens são parte relevante da apresentação dos personagens | Regressão | RISK-12 | Planejado | - |
+| UI-06 | Validar renderização das imagens principais | UI | P1 | Sim | Imagens são parte relevante da apresentação dos personagens | Regressão | RISK-12 | Concluído | ui-tests/tests/smoke/heroes.spec.ts / UI-06 |
 
-| UI-07 | Validar filtros existentes na aplicação | UI | P1 | Parcial | Somente será automatizado após confirmação dos filtros reais no discovery | Regressão | RISK-15 | A validar | - |
+| UI-07 | Validar filtros existentes na aplicação | UI | P1 | Não | A funcionalidade prevista no cenário inicial não foi confirmada no frontend público utilizado como alvo durante o discovery | Regressão | RISK-15 | Fora do escopo após discovery | - |
 
-| UI-08 | Validar busca por nome | UI | P2 | Parcial | Somente será incluído se a funcionalidade existir no frontend atual | Regressão | RISK-15 | A validar | - |
+| UI-08 | Validar busca por nome | UI | P2 | Não | A funcionalidade de busca prevista no modelo inicial não foi confirmada no frontend público utilizado como alvo | Regressão | RISK-15 | Fora do escopo após discovery | - |
 
-| UI-09 | Validar comportamento sem resultado de busca/filtro | UI | P2 | Parcial | Depende da confirmação da funcionalidade real | Negativo | RISK-15 | A validar | - |
+| UI-09 | Validar comportamento sem resultado de busca/filtro | UI | P2 | Não | Cenário depende de busca/filtro que não foi confirmado no frontend real utilizado na automação | Negativo | RISK-15 | Fora do escopo após discovery | - |
 
-| UI-10 | Validar ausência de erros críticos no console em fluxo principal | UI | P1 | Sim | Erros JavaScript podem indicar regressão mesmo com UI aparentemente funcional | Observabilidade | RISK-13 | Planejado | - |
+| UI-10 | Validar ausência de erros críticos no console em fluxo principal | UI | P1 | Sim | Erros JavaScript podem indicar regressão mesmo com UI aparentemente funcional | Observabilidade | RISK-13 | Concluído | ui-tests/tests/smoke/heroes.spec.ts / UI-10 |
 
-| UI-11 | Validar falhas HTTP relevantes durante fluxo principal | UI | P1 | Sim | Ajuda a detectar recursos essenciais indisponíveis | Observabilidade | RISK-12 | Planejado | - |
+| UI-11 | Validar falhas HTTP relevantes durante fluxo principal | UI | P1 | Sim | Ajuda a detectar recursos essenciais indisponíveis | Observabilidade | RISK-12 | Concluído | ui-tests/tests/smoke/heroes.spec.ts / UI-11 |
 
 
 
@@ -197,17 +197,17 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 |---|---|---|---|---|---|---|---|---|---|
 
-| TRV-01 | Validar loading durante carregamento quando observável | UI | P2 | Parcial | Depende do comportamento real e tempo de carregamento | Resiliência | RISK-14 | A validar | - |
+| TRV-01 | Validar loading durante carregamento quando observável | UI | P2 | Não neste escopo | O estado de loading não se mostrou estável e suficientemente observável para justificar automação confiável no alvo externo | Resiliência | RISK-14 | Backlog | - |
 
-| TRV-02 | Validar comportamento diante de erro de rede | UI | P1 | Sim com mock quando aplicável | Falha externa deve resultar em comportamento previsível | Resiliência | RISK-16 | Planejado | - |
+| TRV-02 | Validar comportamento diante de erro de rede | UI | P1 | Não neste escopo | Não existe comportamento de fallback especificado para o portal externo; criar mock sem contrato conhecido produziria cenário artificial | Resiliência | RISK-16 | Backlog | - |
 
-| TRV-03 | Validar timeout controlado | UI / API | P2 | Parcial | Será simulado somente se houver valor e comportamento testável | Resiliência | RISK-16 | A validar | - |
+| TRV-03 | Validar timeout controlado | UI / API | P2 | Não neste escopo | Não foi identificado comportamento funcional específico para timeout que justificasse simulação adicional no desafio | Resiliência | RISK-16 | Backlog | - |
 
-| TRV-04 | Validar múltiplos cliques em ação navegável | UI | P2 | Parcial | Relevante apenas em elementos suscetíveis a duplicidade de ação | Negativo | RISK-14 | A validar | - |
+| TRV-04 | Validar múltiplos cliques em ação navegável | UI | P2 | Não neste escopo | Durante o discovery não foi identificada ação com risco relevante de duplicidade ou efeito transacional | Negativo | RISK-14 | Backlog | - |
 
-| TRV-05 | Validar indisponibilidade de dependência externa | UI / API | P1 | Parcial | Não provocar indisponibilidade real; utilizar mock quando tecnicamente adequado | Resiliência | RISK-16 | Planejado | - |
+| TRV-05 | Validar indisponibilidade de dependência externa | UI / API | P1 | Não neste escopo | Não foi provocada indisponibilidade real de serviço externo; mock sem comportamento contratado foi evitado para não gerar validação artificial | Resiliência | RISK-16 | Backlog | - |
 
-| TRV-06 | Preservar evidência suficiente em caso de falha | Automação / CI | P1 | Sim | Facilita root cause e diferencia defeito de ambiente | Observabilidade | RISK-23 | Planejado | - |
+| TRV-06 | Preservar evidência suficiente em caso de falha | Automação / CI | P1 | Sim | Facilita root cause e diferencia defeito de ambiente | Observabilidade | RISK-23 | Concluído | GitHub Actions: upload de artifacts do Robot Framework e Playwright com `if: always()` |
 
 
 
@@ -269,7 +269,7 @@ A matriz será atualizada conforme o discovery técnico e a implementação evol
 
 | EXP-02 | Explorar listagem, navegação e detalhes no Marvel Rivals Heroes | Exploratória | P0 | Não | Confirma comportamento real antes da automação | Exploratório | RISK-15 | Concluído | docs/exploratory-testing.md |
 
-| EXP-03 | Explorar comportamento diante de falhas e carregamentos lentos | Exploratória | P1 | Não | Ajuda a identificar riscos transversais e oportunidades de mocks | Exploratório | RISK-16 | Parcial | Carregamento assíncrono analisado; falhas de rede ainda pendentes |
+| EXP-03 | Explorar comportamento diante de falhas e carregamentos lentos | Exploratória | P1 | Não | Ajuda a identificar riscos transversais e oportunidades de mocks | Exploratório | RISK-16 | Concluído com limitações | Carregamento assíncrono, lazy loading, console e requisições HTTP analisados; simulações artificiais de falha ficaram registradas no backlog TRV-02, TRV-03 e TRV-05 |
 
 
 
@@ -303,7 +303,7 @@ A prioridade está em:
 
 
 
-Cenários com status `A validar` somente serão promovidos para automação após confirmação do comportamento real da aplicação.
+Cenários mantidos em `Backlog` ou `Fora do escopo` representam decisões conscientes de priorização, considerando risco, valor, estabilidade do alvo e custo de manutenção.
 
 
 
