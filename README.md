@@ -111,12 +111,20 @@ MARVEL_API_TOKEN=SEU_TOKEN
 
 > O arquivo `.env` não deve ser versionado. Apenas `.env.example`, sem credenciais reais, permanece no repositório.
 
-Para ferramentas executadas diretamente pelo shell, disponibilize o token como variável de ambiente.
+Para ferramentas executadas diretamente pelo shell, carregue as variáveis do arquivo `.env` na sessão atual.
 
 No Git Bash:
 
 ```bash
-export MARVEL_API_TOKEN="SEU_TOKEN"
+set -a
+source .env
+set +a
+```
+
+Valide a configuração sem exibir a credencial:
+
+```bash
+test -n "$MARVEL_API_TOKEN" && echo "MARVEL_API_TOKEN configurado"
 ```
 
 ---
@@ -347,7 +355,10 @@ Os principais fluxos automatizados incluem:
 - seleção de herói;
 - atualização da URL;
 - atualização do conteúdo de detalhes;
-- validação de informações funcionais do personagem.
+- validação de informações funcionais do personagem;
+- carregamento das imagens principais dos heróis;
+- ausência de erros críticos no console durante o fluxo principal;
+- ausência de falhas HTTP críticas durante o fluxo principal.
 
 O Page Object principal está em:
 
